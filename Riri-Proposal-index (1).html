@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#ffd9e8">
+  <title>For Riri 🌷</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --pink:#ffd9e8;--pink2:#ffc3dc;--deep:#d95788;--hot:#ed5d98;
+  --text:#63384c;--soft:#fff7fb;--cream:#fffaf5;--green:#a9c98b;
+}
+html,body{min-height:100%;font-family:"Quicksand",sans-serif;color:var(--text);overflow-x:hidden}
+body{
+  background:
+    radial-gradient(circle at 12% 10%,rgba(255,255,255,.9),transparent 28%),
+    radial-gradient(circle at 90% 15%,rgba(255,185,213,.55),transparent 30%),
+    linear-gradient(135deg,#ffeaf3 0%,#ffd7e8 48%,#ffe9f1 100%);
+}
+button{font:inherit;border:0;cursor:pointer}
+.ambient{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.blob{position:absolute;border-radius:50%;filter:blur(35px);opacity:.42;animation:float 9s ease-in-out infinite}
+.blob1{width:220px;height:220px;background:#fff;left:-60px;top:15%}
+.blob2{width:260px;height:260px;background:#ffb6d3;right:-90px;top:35%;animation-delay:-3s}
+.blob3{width:180px;height:180px;background:#fff1a9;left:45%;bottom:-70px;animation-delay:-6s}
+#petals,#sparkles{position:fixed;inset:0;pointer-events:none;z-index:2;overflow:hidden}
+.petal,.spark{position:absolute;opacity:0;animation:fall linear forwards}
+.petal{font-size:18px}.spark{font-size:12px}
+.app{position:relative;z-index:3;width:100%;min-height:100vh;display:flex;justify-content:center}
+.screen{width:min(100%,780px);min-height:100vh;padding:28px 20px 40px;display:none;flex-direction:column;align-items:center;justify-content:center;animation:screenIn .65s ease both}
+.screen.active{display:flex}
+h1,h2{font-family:"Baloo 2",cursive}
+#intro{text-align:center}
+.kitty-card{position:relative;width:170px;height:150px;margin-bottom:20px;animation:bob 3s ease-in-out infinite}
+.kitty-face{position:absolute;width:125px;height:105px;left:22px;top:30px;background:#fff;border:3px solid #5f4851;border-radius:48% 48% 45% 45%;box-shadow:0 10px 25px rgba(156,70,110,.15)}
+.ear{position:absolute;width:35px;height:42px;background:#fff;border:3px solid #5f4851;top:-24px;z-index:-1}
+.ear.left{left:8px;transform:rotate(-20deg);border-radius:80% 20% 10% 20%}
+.ear.right{right:8px;transform:rotate(20deg);border-radius:20% 80% 20% 10%}
+.eye{position:absolute;width:7px;height:11px;background:#41383d;border-radius:50%;top:48px}.e1{left:36px}.e2{right:36px}
+.nose{position:absolute;width:10px;height:7px;border-radius:50%;background:#e8a94d;left:57px;top:60px}
+.whisker{position:absolute;width:27px;height:1px;background:#51464a}.w1{left:-20px;top:59px;transform:rotate(10deg)}.w2{left:-20px;top:68px;transform:rotate(-10deg)}.w3{right:-20px;top:59px;transform:rotate(-10deg)}.w4{right:-20px;top:68px;transform:rotate(10deg)}
+.bow{position:absolute;right:-13px;top:-13px;font-size:40px;transform:rotate(12deg)}
+.pig-float{position:absolute;right:-2px;bottom:2px;font-size:48px;filter:drop-shadow(0 6px 5px rgba(150,60,100,.12));animation:wiggle 2.2s ease-in-out infinite}
+.tiny-label{font-size:12px;letter-spacing:1.2px;text-transform:uppercase;opacity:.62;margin-bottom:7px}
+#intro h1{font-size:clamp(48px,12vw,82px);line-height:.95;color:#d34f83;margin-bottom:12px}
+.intro-text{font-size:16px;line-height:1.8;max-width:520px;margin:0 auto 24px}
+.primary-btn,.yes-btn,.blush-btn,.no-btn{border-radius:999px;padding:14px 23px;font-weight:700;box-shadow:0 9px 22px rgba(208,73,126,.17);transition:.25s transform,.25s box-shadow,.25s background}
+.primary-btn{background:linear-gradient(135deg,#e75b95,#d84e89);color:#fff}
+.primary-btn:hover,.yes-btn:hover,.blush-btn:hover{transform:translateY(-3px);box-shadow:0 14px 27px rgba(208,73,126,.25)}
+.primary-btn span{margin-left:8px}
+.icecream{margin-top:17px;font-size:13px;opacity:.75}.icecream span{color:#7b573f;font-weight:700}
+.topbar{width:100%;display:flex;align-items:center;gap:12px;position:absolute;top:22px;left:0;padding:0 20px}
+.mini-btn{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.65);color:var(--deep);font-size:22px}
+.progress-wrap{flex:1;display:flex;align-items:center;gap:10px}
+.progress{height:8px;flex:1;background:rgba(255,255,255,.65);border-radius:99px;overflow:hidden}
+#progressFill{height:100%;width:11%;background:linear-gradient(90deg,#ef6ba1,#d84d87);border-radius:99px;transition:width .45s ease}
+#progressText{font-size:12px;font-weight:700;opacity:.6}.tiny-heart{font-size:27px;color:#db5a91}
+.question-card{width:min(100%,650px);margin-top:45px;background:rgba(255,255,255,.72);backdrop-filter:blur(15px);border:1px solid rgba(255,255,255,.9);border-radius:30px;padding:34px 25px 25px;box-shadow:0 20px 60px rgba(177,68,113,.13);text-align:center;position:relative}
+.question-icon{font-size:42px;margin-bottom:4px;animation:bob 2.5s ease-in-out infinite}
+.question-kicker{font-size:14px;font-weight:700;color:#d25185;letter-spacing:.3px;margin-bottom:5px}
+.question-card h2{font-size:clamp(25px,6vw,38px);line-height:1.12;margin-bottom:22px;color:#60364a}
+.answers{display:grid;gap:10px;text-align:left}
+.answer{width:100%;padding:15px 17px;border-radius:18px;background:#fff;border:1px solid #f4d8e4;color:#684052;font-weight:600;transition:.25s transform,.25s background,.25s border,.25s box-shadow;animation:answerIn .45s ease both}
+.answer:hover{transform:translateX(5px);background:#fff0f7;border-color:#f2a9c7;box-shadow:0 7px 18px rgba(210,75,130,.1)}
+.answer.chosen{background:#ffd6e7;border-color:#e76099;transform:scale(.98)}
+.hint{font-size:11px;opacity:.48;margin-top:16px}
+.kitty-corner,.pig-corner{position:fixed;font-size:40px;bottom:18px}.kitty-corner{right:20px}.pig-corner{left:20px}
+#confession{justify-content:flex-start;padding-top:45px}
+.letter{width:min(100%,690px);background:rgba(255,253,248,.93);border-radius:27px;padding:26px 23px 24px;box-shadow:0 22px 65px rgba(170,66,108,.17);border:1px solid rgba(255,255,255,.8);position:relative;overflow:hidden}
+.letter:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0,transparent 30px,rgba(220,166,181,.08) 31px);pointer-events:none}
+.letter-top{display:flex;justify-content:center;gap:20px;font-size:23px;margin-bottom:9px}
+.letter-name{font-family:"Baloo 2";font-size:38px;color:#d45186;margin-bottom:5px}
+.letter-body{font-size:15px;line-height:1.82;position:relative}.letter-body p{margin:0 0 14px}.letter-body h2{font-size:34px;color:#d34f83;text-align:center;margin:14px 0}
+.choice-area{display:grid;gap:10px;margin-top:20px;position:relative}.yes-btn{background:#e75a95;color:white}.blush-btn{background:#ffd3e5;color:#a63f6b}.no-btn{background:#f4e9ed;color:#8c6c79;font-size:13px;padding:10px}
+.response{text-align:center;font-weight:700;color:#d04e82;min-height:23px;font-size:14px}.signature{text-align:right;margin-top:13px;font-family:"Baloo 2";font-size:18px;color:#a66b80}
+.confetti{position:absolute;top:-30px;left:50%;font-size:20px;animation:confettiFall 2.5s linear forwards}
+.result-screen{text-align:center}.celebrate{font-size:80px;animation:heartBeat 1.2s infinite}
+.result-screen h1{font-size:clamp(42px,10vw,70px);color:#d34f83;line-height:1}
+.result-screen>p{margin:15px 0 22px}
+.result-card{background:rgba(255,255,255,.72);padding:28px;border-radius:28px;width:min(100%,500px);box-shadow:0 18px 50px rgba(190,65,115,.13);margin-bottom:22px}
+.result-card span{font-size:28px;margin:0 7px}.result-card h2{margin:15px 0 5px;color:#683b50;font-size:28px}.result-card p{opacity:.72}
+@keyframes screenIn{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:none}}
+@keyframes answerIn{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes wiggle{0%,100%{transform:rotate(0)}50%{transform:rotate(7deg)}}
+@keyframes float{0%,100%{transform:translate(0,0)}50%{transform:translate(20px,-25px)}}
+@keyframes fall{0%{transform:translateY(-30px) rotate(0);opacity:0}10%{opacity:.8}100%{transform:translateY(105vh) rotate(300deg);opacity:0}}
+@keyframes confettiFall{0%{transform:translate(-50%,0) rotate(0);opacity:1}100%{transform:translate(calc(-50% + var(--x)),100vh) rotate(720deg);opacity:0}}
+@keyframes heartBeat{0%,100%{transform:scale(1)}15%{transform:scale(1.15)}30%{transform:scale(1)}}
+@media(max-width:500px){.screen{padding-left:15px;padding-right:15px}.question-card{padding:27px 17px 21px;border-radius:25px}.letter{padding:22px 18px}.letter-body{font-size:14px;line-height:1.75}.kitty-corner,.pig-corner{font-size:30px}.topbar{padding:0 15px}.intro-text{font-size:15px}}
+
+</style>
+</head>
+<body>
+  <div class="ambient">
+    <span class="blob blob1"></span><span class="blob blob2"></span><span class="blob blob3"></span>
+  </div>
+
+  <div id="petals"></div>
+  <div id="sparkles"></div>
+
+  <main class="app">
+    <section id="intro" class="screen active">
+      <div class="kitty-card">
+        <div class="kitty-face">
+          <span class="ear left"></span><span class="ear right"></span>
+          <span class="eye e1"></span><span class="eye e2"></span>
+          <span class="nose"></span>
+          <span class="whisker w1"></span><span class="whisker w2"></span>
+          <span class="whisker w3"></span><span class="whisker w4"></span>
+          <span class="bow">🎀</span>
+        </div>
+        <div class="pig-float">🐷</div>
+      </div>
+      <p class="tiny-label">A tiny little website made for one very special girl</p>
+      <h1>Hey, Riri… 🌷</h1>
+      <p class="intro-text">I made something for you.<br>But first… you have to answer a few <b>very serious</b> questions. 👀</p>
+      <button class="primary-btn" id="startBtn">Enter my little world 💗 <span>→</span></button>
+      <div class="icecream">🍨 <span>choco pista</span> 🍫</div>
+    </section>
+
+    <section id="quiz" class="screen">
+      <div class="topbar">
+        <button class="mini-btn" id="backBtn" aria-label="Back">←</button>
+        <div class="progress-wrap">
+          <div class="progress"><div id="progressFill"></div></div>
+          <span id="progressText">1 / 9</span>
+        </div>
+        <div class="tiny-heart">♡</div>
+      </div>
+
+      <div class="question-card">
+        <div class="question-icon" id="questionIcon">🌷</div>
+        <p class="question-kicker" id="questionKicker">Riri… important question</p>
+        <h2 id="questionText"></h2>
+        <div id="answers" class="answers"></div>
+        <p class="hint">Choose honestly… I'm watching 👀</p>
+      </div>
+      <div class="kitty-corner">🎀</div>
+      <div class="pig-corner">🐷</div>
+    </section>
+
+    <section id="confession" class="screen">
+      <div class="confetti-layer" id="confetti"></div>
+      <div class="letter">
+        <div class="letter-top">
+          <span>🐷</span><span>🌷</span><span>🎀</span><span>🍨</span>
+        </div>
+        <p class="letter-name">Riri… 🌷</p>
+        <div class="letter-body">
+          <p>You're my sunshine, my little espresso shot, my cute vampire, my cat who keeps threatening to bite me… and somehow, the person who can make my heart race just by sending me a text.</p>
+          <p>I know we're far apart. I know distance won't always be easy.</p>
+          <p>But what I feel for you is real, and I don't want the miles between us to be the thing that decides our story.</p>
+          <p>So, Riz Alleli… my Riri…</p>
+          <h2>Will you be mine? 💗</h2>
+          <p>Cause the day I met you everything feels right. I've never been this close to any girl, but you somehow got me smiling like an idiot every time I think about you.</p>
+          <p><b>I LOVE YOU Riz Alleli (Riri 🌷) with my whole heart.</b></p>
+          <p>Even though I'm not worthy of your love, I'll try my best to not let you down and make you happy. There will be dark days ahead of us too, so please don't give up on me. Don't lose hope. We'll sort it out with our calm minds. I want you to be at peace and full of happiness with me.</p>
+        </div>
+        <div class="choice-area">
+          <button class="yes-btn" id="yesBtn">YES 💗</button>
+          <button class="blush-btn" id="blushBtn">YES, BUT LET ME BLUSH FIRST 🙈</button>
+          <button class="no-btn" id="noBtn">NO</button>
+          <p id="response" class="response"></p>
+        </div>
+        <div class="signature">— Rishi ♡</div>
+      </div>
+    </section>
+
+    <section id="yesScreen" class="screen result-screen">
+      <div class="celebrate">💗</div>
+      <h1>Riri said YES! 🥹🌷</h1>
+      <p>Okay… now you've officially made one very happy boy.</p>
+      <div class="result-card">
+        <span>🐷</span><span>🎀</span><span>🍨</span><span>🐱</span>
+        <h2>Distance has nothing on us.</h2>
+        <p>Now come here, you cute little vampire. 🫂</p>
+      </div>
+      <button class="primary-btn" id="replayBtn">Read it all again ↻</button>
+    </section>
+  </main>
+
+  <script>
+const questions = [
+  {
+    icon:"🌷", kicker:"Riri… important question",
+    text:"Why are you illegally this cute?",
+    answers:["I was born this way 😌","Maybe because I'm your noona 🐷💗"]
+  },
+  {
+    icon:"🧛🏻‍♀️", kicker:"Okay, little vampire 🧛🏻‍♀️…",
+    text:"You keep saying you're going to bite me. Should I be scared?",
+    answers:["Obviously. I’m a dangerous vampire 😈","Nooo… unless you get too cute 🫣"]
+  },
+  {
+    icon:"🐱", kicker:"Hmm… another serious question 🐱",
+    text:"If you could transform into one right now, what would you choose?",
+    answers:["A tiny piggy 🐷","Hello Kitty 🎀","A cute little cat nxt to me"]
+  },
+  {
+    icon:"💗", kicker:"Be honest, Riri…",
+    text:"Do you know what happens to me when I see a text from you?",
+    answers:["Your heart goes boom boom? 👀","You pretend you're calm but you're actually screaming inside 😭💗","Nothing"]
+  },
+  {
+    icon:"🍨", kicker:"Okay shawty, imagine this…",
+    text:"If the distance between us suddenly disappeared, what would you want our first moment together to be?",
+    answers:["A really long hug 🫂","Just looking at each other and smiling like idiots","Getting your fav ice-cream choco pista together","Something only Riri and Rishi would understand"]
+  },
+  {
+    icon:"📱", kicker:"Sometimes I look at my phone hoping there's a message from you.",
+    text:"Why do you think that is?",
+    answers:["Because I'm your favourite notification 📱💗","Because you secretly miss me","Because you're hopelessly attached to me 😌","Maybe… because you love me?"]
+  },
+  {
+    icon:"❤️", kicker:"Can I be serious for a second?",
+    text:"What do you think makes two people feel close even when they're ridiculously far apart?",
+    answers:["Talking every day 💬","Making each other smile","Feeling safe with each other","Choosing each other despite the distance ❤️"]
+  },
+  {
+    icon:"🌎", kicker:"Riri…",
+    text:"If miles couldn't exist between us, would you still choose to have Rishi beside you?",
+    answers:["Maybe… 👀","Yes","No","Obviously, silly 💗"]
+  },
+  {
+    icon:"☀️", kicker:"Riri… one last thing.",
+    text:"What do you think Rishi feels when he sees your name appear on his screen?",
+    answers:["A tiny smile","Butterflies","His heart racing","All of the above… because you're his sunshine ☀️"]
+  }
+];
+
+const screens = {
+  intro:document.getElementById("intro"),
+  quiz:document.getElementById("quiz"),
+  confession:document.getElementById("confession"),
+  yes:document.getElementById("yesScreen")
+};
+let current = 0;
+
+const $ = id => document.getElementById(id);
+function showScreen(name){
+  Object.values(screens).forEach(s=>s.classList.remove("active"));
+  screens[name].classList.add("active");
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+function renderQuestion(){
+  const q = questions[current];
+  $("questionIcon").textContent=q.icon;
+  $("questionKicker").textContent=q.kicker;
+  $("questionText").textContent=q.text;
+  $("progressFill").style.width=((current+1)/questions.length*100)+"%";
+  $("progressText").textContent=`${current+1} / ${questions.length}`;
+  $("answers").innerHTML="";
+  q.answers.forEach((answer,i)=>{
+    const b=document.createElement("button");
+    b.className="answer";
+    b.textContent=answer;
+    b.style.animationDelay=(i*70)+"ms";
+    b.onclick=()=>chooseAnswer(b);
+    $("answers").appendChild(b);
+  });
+}
+function chooseAnswer(btn){
+  document.querySelectorAll(".answer").forEach(b=>b.disabled=true);
+  btn.classList.add("chosen");
+  sprinkle(9);
+  setTimeout(()=>{
+    if(current<questions.length-1){
+      current++;
+      renderQuestion();
+    }else{
+      showScreen("confession");
+      sprinkle(22);
+    }
+  },420);
+}
+$("startBtn").onclick=()=>{current=0;showScreen("quiz");renderQuestion();sprinkle(15)};
+$("backBtn").onclick=()=>{
+  if(current>0){current--;renderQuestion();}
+  else showScreen("intro");
+};
+
+$("yesBtn").onclick=()=>{
+  sprinkle(70);
+  setTimeout(()=>showScreen("yes"),350);
+};
+$("blushBtn").onclick=()=>{
+  $("response").textContent="I knew you'd make me blush too… come here, Riri. 🙈💗";
+  sprinkle(30);
+};
+$("noBtn").onclick=()=>{
+  $("response").textContent="It's okay, Riri. Please text Rishi a “no” and we can stay friends as always. 🤍";
+  $("noBtn").textContent="Okay 🤍";
+};
+
+$("replayBtn").onclick=()=>{current=0;showScreen("intro")};
+
+function sprinkle(n){
+  const box=$("petals");
+  const symbols=["🌷","💗","🎀","🐷","✨","♡"];
+  for(let i=0;i<n;i++){
+    const el=document.createElement("span");
+    el.className="petal";
+    el.textContent=symbols[Math.floor(Math.random()*symbols.length)];
+    el.style.left=Math.random()*100+"vw";
+    el.style.animationDuration=(2.5+Math.random()*3)+"s";
+    el.style.animationDelay=(Math.random()*.5)+"s";
+    el.style.fontSize=(11+Math.random()*13)+"px";
+    box.appendChild(el);
+    setTimeout(()=>el.remove(),6000);
+  }
+}
+function ambientSparkles(){
+  const box=$("sparkles");
+  for(let i=0;i<18;i++){
+    const s=document.createElement("span");
+    s.className="spark";s.textContent="✦";
+    s.style.left=Math.random()*100+"vw";s.style.top=Math.random()*100+"vh";
+    s.style.opacity=.25+Math.random()*.35;
+    s.style.animation="pulseSpark "+(2+Math.random()*3)+"s ease-in-out infinite";
+    s.style.animationDelay=Math.random()*2+"s";
+    box.appendChild(s);
+  }
+}
+const style=document.createElement("style");
+style.textContent="@keyframes pulseSpark{0%,100%{transform:scale(.6);opacity:.15}50%{transform:scale(1.4);opacity:.75}}";
+document.head.appendChild(style);
+ambientSparkles();
+setInterval(()=>sprinkle(2),5000);
+
+</script>
+</body>
+</html>
